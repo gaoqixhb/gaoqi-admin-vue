@@ -1,15 +1,44 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from 'components/Hello'
+import Home from '../views/Home'
+import Login from '../views/Login'
+import auth from '../auth'
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'Home',
+      component: Home,
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login,
+      beforeEnter: (to, from, next) => {
+        if (auth.loggedIn()) {
+          next({
+            path: '/'
+          })
+        } else {
+          next()
+        }
+      }
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (!auth.loggedIn() && to.name !== 'Login') {
+    next({
+      path: '/login',
+      query: { redirect: to.fullPath }
+    })
+  } else {
+    next()
+  }
+})
+
+export default router
