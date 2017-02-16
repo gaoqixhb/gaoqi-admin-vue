@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "deploy:coding": "gh-pages -d dist -o coding -b coding-pages"
   },
   "dependencies": {
     "axios": "^0.15.3",
