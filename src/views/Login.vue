@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     goDashboard () {
-      this.$router.push('Home')
+      this.$router.replace({ name: 'Home' })
     },
     handleSubmit () {
       this.$refs.loginForm.validate((valid) => {
