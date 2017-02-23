@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../views/Home'
-import Login from '../views/Login'
-import auth from '../auth'
+import auth from './auth'
+
 
 Vue.use(Router)
 
@@ -11,12 +10,20 @@ const router =  new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home,
+      component: resolve => {
+        require.ensure([], () => {
+          resolve(require('./views/Home/home'))
+        }, 'home')
+      }
     },
     {
       path: '/login',
       name: 'Login',
-      component: Login,
+      component: resolve => {
+        require.ensure([], () => {
+          resolve(require('./views/Login/login'))
+        }, 'home')
+      },
       beforeEnter: (to, from, next) => {
         if (auth.loggedIn()) {
           next({

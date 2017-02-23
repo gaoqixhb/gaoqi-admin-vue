@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import auth from '../auth'
+import auth from '../../auth'
 
 export default {
   name: 'login',
@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     goDashboard () {
-      this.$router.replace({ name: 'Home' })
+      this.$router.push('Home')
     },
     handleSubmit () {
       this.$refs.loginForm.validate((valid) => {
