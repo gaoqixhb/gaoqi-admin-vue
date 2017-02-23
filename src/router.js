@@ -14,7 +14,10 @@ const router =  new Router({
         require.ensure([], () => {
           resolve(require('./views/Home/home'))
         }, 'home')
-      }
+      },
+      children: [
+        
+      ]
     },
     {
       path: '/login',
