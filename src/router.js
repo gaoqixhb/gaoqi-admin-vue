@@ -22,7 +22,7 @@ const router =  new Router({
       component: resolve => {
         require.ensure([], () => {
           resolve(require('./views/Login/login'))
-        }, 'home')
+        }, 'login')
       },
       beforeEnter: (to, from, next) => {
         if (auth.loggedIn()) {
